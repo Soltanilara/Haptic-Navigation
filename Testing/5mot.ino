@@ -1,6 +1,6 @@
 #include <AccelStepper.h>
 
-const int stepsPerRevolution = 20;
+const int stepsPerRevolution = 200;
 
 const int motor1Pins[4] = {22, 23, 24, 25};
 const int motor2Pins[4] = {26, 27, 28, 29};
@@ -18,8 +18,8 @@ const int button7Pin = 9;
 const int button8Pin = 10;
 const int button9Pin = 11;
 const int button10Pin = 12;
-const int button11Pin = 13;
-const int button12Pin = 14;
+
+int motor_speed = 800;
 
 
 AccelStepper motor1(AccelStepper::FULL4WIRE, motor1Pins[0], motor1Pins[1], motor1Pins[2], motor1Pins[3]);
@@ -28,89 +28,168 @@ AccelStepper motor3(AccelStepper::FULL4WIRE, motor3Pins[0], motor3Pins[1], motor
 AccelStepper motor4(AccelStepper::FULL4WIRE, motor4Pins[0], motor4Pins[1], motor4Pins[2], motor4Pins[3]);
 AccelStepper motor5(AccelStepper::FULL4WIRE, motor5Pins[0], motor5Pins[1], motor5Pins[2], motor5Pins[3]);
 
+
 void setup() {
-  pinMode(button1Pin, INPUT);
-  pinMode(button2Pin, INPUT);
-  pinMode(button3Pin, INPUT);
-  pinMode(button4Pin, INPUT);
-  pinMode(button5Pin, INPUT);
-  pinMode(button6Pin, INPUT);
-  pinMode(button7Pin, INPUT);
-  pinMode(button8Pin, INPUT);
-  pinMode(button9Pin, INPUT);
-  pinMode(button10Pin, INPUT);
-  
-  motor1.setMaxSpeed(20);
-  motor1.setAcceleration(4);
-  motor2.setMaxSpeed(20);
-  motor2.setAcceleration(4);
-  motor3.setMaxSpeed(20);
-  motor3.setAcceleration(4);
-  motor4.setMaxSpeed(20);
-  motor4.setAcceleration(4);
-  motor5.setMaxSpeed(20);
-  motor5.setAcceleration(4);
+  pinMode(button1Pin, INPUT_PULLUP);
+  pinMode(button2Pin, INPUT_PULLUP);
+  pinMode(button3Pin, INPUT_PULLUP);
+  pinMode(button4Pin, INPUT_PULLUP);
+  pinMode(button5Pin, INPUT_PULLUP);
+  pinMode(button6Pin, INPUT_PULLUP);
+  pinMode(button7Pin, INPUT_PULLUP);
+  pinMode(button8Pin, INPUT_PULLUP);
+  pinMode(button9Pin, INPUT_PULLUP);
+  pinMode(button10Pin, INPUT_PULLUP);
+ 
+
 }
 
 void loop() {
-  if (digitalRead(button1Pin) == LOW) {
+switch (digitalRead(button1Pin)) {
+  case LOW:
+    motor1.setMaxSpeed(2000);
+    motor1.setSpeed(motor_speed);
     motor1.runSpeed();
-  }
-  if (digitalRead(button2Pin) == LOW) {
+    //print(digitalRead(button1Pin));
+    break;
+  case HIGH:
+    break;
+}
+switch (digitalRead(button2Pin)) {
+  case LOW:
+    motor1.setMaxSpeed(2000);
+    motor1.setSpeed(-motor_speed);
+    motor1.runSpeed();
+    break;
+  case HIGH:
+    break;
+}
+
+switch (digitalRead(button3Pin)) {
+  case LOW:
+    motor2.setMaxSpeed(2000);
+    motor2.setSpeed(motor_speed);
     motor2.runSpeed();
-  }
-  if (digitalRead(button3Pin) == LOW) {
+    //print(digitalRead(button1Pin));
+    break;
+  case HIGH:
+    break;
+}
+switch (digitalRead(button4Pin)) {
+  case LOW:
+    motor2.setMaxSpeed(2000);
+    motor2.setSpeed(-motor_speed);
+    motor2.runSpeed();
+    break;
+  case HIGH:
+    break;
+}
+
+switch (digitalRead(button5Pin)) {
+  case LOW:
+    motor3.setMaxSpeed(2000);
+    motor3.setSpeed(motor_speed);
     motor3.runSpeed();
-  }
-  if (digitalRead(button4Pin) == LOW) {
+    //print(digitalRead(button1Pin));
+    break;
+  case HIGH:
+    break;
+}
+switch (digitalRead(button6Pin)) {
+  case LOW:
+    motor3.setMaxSpeed(2000);
+    motor3.setSpeed(-motor_speed);
+    motor3.runSpeed();
+    break;
+  case HIGH:
+    break;
+}
+
+
+switch (digitalRead(button7Pin)) {
+  case LOW:
+    motor4.setMaxSpeed(2000);
+    motor4.setSpeed(motor_speed);
     motor4.runSpeed();
-  }
-  if (digitalRead(button5Pin) == LOW) {
-    motor5.runSpeed();
-  }
-  if (digitalRead(button6Pin) == LOW) {
-    motor5.runSpeed();
-  }
-  if (digitalRead(button7Pin) == LOW) {
-    motor5.runSpeed();
-  }
-  if (digitalRead(button8Pin) == LOW) {
-    motor5.runSpeed();
-  }
-  if (digitalRead(button9Pin) == LOW) {
-    motor5.runSpeed();
-  }
-  if (digitalRead(button10Pin) == LOW) {
-    motor5.runSpeed();
-  }
+    //print(digitalRead(button1Pin));
+    break;
+  case HIGH:
+    break;
+}
+switch (digitalRead(button8Pin)) {
+  case LOW:
+    motor4.setMaxSpeed(2000);
+    motor4.setSpeed(-motor_speed);
+    motor4.runSpeed();
+    break;
+  case HIGH:
+    break;
+}
 
-  if (digitalRead(button11Pin) == LOW) {
-    motor1.runSpeed();
-  }
-  if (digitalRead(button12Pin) == LOW) {
-    motor2.runSpeed();
-  }
 
-  if (digitalRead(button1Pin) == digitalRead(button2Pin)) {
-    digitalWrite(46, HIGH);
-  }
-  if (digitalRead(button3Pin) == digitalRead(button4Pin)) {
-    digitalWrite(47, HIGH);
-  }
-  if (digitalRead(button5Pin) == digitalRead(button6Pin)) {
-    digitalWrite(49, HIGH);
-  }
-  if (digitalRead(button7Pin) == digitalRead(button8Pin)) {
-    digitalWrite(51, HIGH);
-  }
-  if (digitalRead(button9Pin) == digitalRead(button10Pin)) {
-    digitalWrite(53, HIGH);
-  }
+switch (digitalRead(button9Pin)) {
+  case LOW:
+    motor5.setMaxSpeed(2000);
+    motor5.setSpeed(motor_speed);
+    motor5.runSpeed();
+    //print(digitalRead(button1Pin));
+    break;
+  case HIGH:
+    break;
+}
+switch (digitalRead(button10Pin)) {
+  case LOW:
+    motor5.setMaxSpeed(2000);
+    motor5.setSpeed(-motor_speed);
+    motor5.runSpeed();
+    break;
+  case HIGH:
+    break;
+}
 
-motor1.run();
-motor2.run();
-motor3.run();
-motor4.run();
-motor5.run();
+
+// stop
+switch (digitalRead(button1Pin) == digitalRead(button2Pin)) {
+  case true:
+    digitalWrite(46, LOW);
+    break;
+  case false:
+    break;
+}
+
+switch (digitalRead(button3Pin) == digitalRead(button4Pin)) {
+  case true:
+    digitalWrite(47, LOW);
+    break;
+  case false:
+    break;
+}
+
+switch (digitalRead(button5Pin) == digitalRead(button6Pin)) {
+  case true:
+    digitalWrite(49, LOW);
+    break;
+  case false:
+    break;
+}
+
+switch (digitalRead(button7Pin) == digitalRead(button8Pin)) {
+  case true:
+    digitalWrite(51, LOW);
+    break;
+  case false:
+    break;
+}
+
+switch (digitalRead(button9Pin) == digitalRead(button10Pin)) {
+  case true:
+    digitalWrite(53, LOW);
+    break;
+  case false:
+    break;
+}
+
+
+
 
 }
